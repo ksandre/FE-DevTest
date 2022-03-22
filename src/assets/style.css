@@ -1,0 +1,187 @@
+body {
+  background-color: #f3f3f3;
+  margin: 0;
+  font-family: 'Segoe UI';
+}
+
+header {
+  padding-left: 215px;
+  padding-right: 100px;
+  height: 210px;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 30%) 0px 0px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerIcon {
+  position: absolute;
+  left: 100px;
+  bottom: 4px;
+  width: 72px;
+  height: 72px;
+  border-radius: 100%;
+  border: 0px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.headerIcon.addUser {
+  color: white;
+  font-weight: normal;
+  background-color: rgb(48, 94, 202);
+  font-family: 'Segoe';
+  font-size: 48px;
+}
+
+.headerIcon.userSetup {
+    background-color: #C6C6C6;
+    background-image: url('./user_setup.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 36px;
+}
+
+h1 {
+  font-size: 36px;
+  letter-spacing: 0px;
+  color: #000000;
+  margin: 0px;
+  padding: 0px;
+  align-self: center;
+}
+
+.search {
+  align-self: center;
+}
+
+.userInfo {
+    position: relative;
+    padding-left: 215px;
+    padding-right: 100px;
+    min-height: 870px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.userInfo.disabled::before {
+  position: absolute;
+  content: "";
+  display: block;
+  opacity: 0.8;
+  background-color: #f3f3f3;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 5;
+}
+.userInfo.disabled .activeAfterDisabling {
+  position: relative;
+  z-index: 10;
+}
+.userInfo.disabled .hideAfterDisabling {
+  display: none;
+}
+
+.roundButton {
+  width: 210px;
+  height: 60px;
+  color: white;
+  border-radius: 100px;
+  font-size: 16px;
+  border: 0px;
+  box-shadow: 0px 3px 6px #00000029;
+  cursor: pointer;
+}
+.roundButton:hover {
+  opacity: 0.8;
+}
+.roundButton:active {
+  transform: scale(0.95);
+  transition: all 0.1s ease-out;
+}
+
+.roundButton[color=violet] {
+  background-color: #7E7EF1;
+}
+
+.roundButton[color=blue] {
+  background-color: #44A0D3;
+}
+
+.userAvatarVpn {
+  width: 77px !important;
+  height: 50px !important;
+  background-image: url('./vpn_key.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 16px;
+  right: 0px;
+}
+
+.homeUserVpn {
+  width: 48px !important;
+  height: 32px !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('./vpn_key.png');
+  position: absolute;
+  bottom: -5px;
+  right: -55px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.permission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+ul.permissionUl {
+    display: block;
+    list-style: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.superAdmin ul.permissionUl {padding-inline-start: 0;}
+.superAdmin ul.permissionUl .permission { font-weight: bold !important; }
+.superAdmin ul.permissionUl .permission div::before {display: none;}
+
+ul.permissionUl .permission[color="red"] {
+  font-weight: normal;
+}
+
+ul.permissionUl .permission div::before {
+  content: "";
+  font-weight: bold;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-bottom: 2px;
+  border-radius: 100%;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+ul.permissionUl .permission[color="red"] div::before {
+  background-color: red;
+}
+ul.permissionUl .permission[color="blue"] div::before {
+  background-color: #44A0D3;
+}
+
+.permissionCollapse {
+  display: flex;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+.permissionCollapse div:first-child {
+  padding-right: 6px;
+}
