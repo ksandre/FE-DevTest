@@ -1,28 +1,28 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from "../components/header";
-import dbJSON from '../assets/db.json';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import PermissionsList from '../components/permissions_list';
 import CustomSwitch from '../components/custom_switch';
+import UsersContext from '../UsersContext';
 
 const User = () => {
+  const UsersContextHook = useContext(UsersContext);
   const { id } = useParams();
+  const currentUser = UsersContextHook.users.find(element => element.id === id);
 
-  const currentUser = dbJSON.find(element => element.id === id);
-
-  const [userStatus, setDisabled] = React.useState(currentUser.status === '1' ? true : false);
+  const [userStatus, setDisabled] = useState(currentUser.status === '1' ? true : false);
   const handleDisableUserClick = () => {
     setDisabled(!userStatus);
     if(userStatus) { document.getElementById('userInfo').classList.add("disabled"); }
     else { document.getElementById('userInfo').classList.remove("disabled"); }
   };
 
-  const [openGroup1, setOpen1] = React.useState(true);
-  const [openGroup2, setOpen2] = React.useState(false);
-  const [openGroup3, setOpen3] = React.useState(false);
+  const [openGroup1, setOpen1] = useState(true);
+  const [openGroup2, setOpen2] = useState(false);
+  const [openGroup3, setOpen3] = useState(false);
   const handleClick1 = () => { setOpen1(!openGroup1); };
   const handleClick2 = () => { setOpen2(!openGroup2); };
   const handleClick3 = () => { setOpen3(!openGroup3); };
@@ -30,7 +30,7 @@ const User = () => {
   return (
     <div>
       <Header title={'User Setup'} icon={'userSetup'} />
-      <div id="userInfo" className='userInfo'>
+      <div id="userInfo" className={`userInfo ${currentUser.status === '1' ? '' : 'disabled'}`}>
         <div style={{ textAlign: 'center' }}>
           <div className='activeAfterDisabling'>
             <div style={{ position: 'relative' }}>

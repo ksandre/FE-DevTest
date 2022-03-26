@@ -1,68 +1,65 @@
-import React, { Component } from "react";
+import React, { useState, useContext } from "react";
+import UsersContext from '../UsersContext';
 
-class InviteNewUser extends Component {
-  constructor(props) {
-    super(props);
+const InviteNewUser = () => {
+  const UsersContextHook = useContext(UsersContext);
+  // First Name
+  const [firstName, setfirstName] = useState('');
+  const firstNameChange = event => setfirstName(event.target.value);
+  // Last Name
+  const [lastName, setlastName] = useState('');
+  const lastNameChange = event => setlastName(event.target.value);
+  // Email
+  const [email, setEmail] = useState('');
+  const emailChange = event => setEmail(event.target.value);
+  // Role
+  const [role, setRole] = useState('');
+  const roleChange = event => setRole(event.target.value);
 
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      role: ''
+  const handleSubmit = (event) => {
+    let randomId = Math.floor(Math.random() * 100000);
+    let invitedUser = {
+      id: randomId,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      role: role
     };
 
-    this.firstNameChange = this.firstNameChange.bind(this);
-    this.lastNameChange = this.lastNameChange.bind(this);
-    this.emailChange = this.emailChange.bind(this);
-    this.roleChange = this.roleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+    alert(JSON.stringify(invitedUser));
 
-  firstNameChange(event) { this.setState({firstName: event.target.value}); }
-  lastNameChange(event) { this.setState({lastName: event.target.value}); }
-  emailChange(event) { this.setState({email: event.target.value}); }
-  roleChange(event) { this.setState({role: event.target.value}); }
-
-  handleSubmit(event) {
-    alert(`
-      First Name: ${this.state.firstName}
-      Last Name: ${this.state.lastName}
-      Email: ${this.state.email}
-      Role: ${this.state.role}
-    `);
+    UsersContextHook.addUser(invitedUser);
     event.preventDefault();
   }
 
-  render() {
-    return (
-        <form onSubmit={this.handleSubmit}>
-        <label>
-          First Name:
-          <input type="text" value={this.state.firstName} onChange={this.firstNameChange} />
-        </label>
-        <br/>
-        <label>
-          Last Name:
-          <input type="text" value={this.state.lastName} onChange={this.lastNameChange} />
-        </label>
-        <br/>
-        <label>
-          Email:
-          <input type="text" value={this.state.email} onChange={this.emailChange} />
-        </label>
-        <br/>
-        <label>
-          Role:
-          <select value={this.state.role} onChange={this.roleChange}>
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
-          </select>
-        </label>
-        <br/>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
+  return (
+    <form action="" onSubmit={handleSubmit}>
+      <label>
+        First Name:
+        <input type="text" value={firstName} onChange={firstNameChange} />
+      </label>
+      <br />
+      <label>
+        Last Name:
+        <input type="text" value={lastName} onChange={lastNameChange} />
+      </label>
+      <br />
+      <label>
+        Email:
+        <input type="text" value={email} onChange={emailChange} />
+      </label>
+      <br />
+      <label>
+        Role:
+        <select value={role} onChange={roleChange}>
+          <option value="User">User</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </label>
+      <br />
+      <input type="submit" value="Submit"/>
+    </form>
+  );
 }
 
 export default InviteNewUser;

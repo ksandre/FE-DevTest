@@ -5,7 +5,6 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 import IconButton from '@mui/material/IconButton';
 import { Close as CloseIcon } from '@mui/icons-material';
 import InviteNewUser from './invite_new_user';
-import dbJSON from '../assets/db.json';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -67,7 +66,7 @@ const Header = (props) => {
                     </IconButton>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', clear: 'right'}}>
                         <h1>Invite New User</h1>
-                        <InviteNewUser users={{dbJSON}} />
+                        <InviteNewUser />
                     </div>
                     </Box>
                 </StyledModal>

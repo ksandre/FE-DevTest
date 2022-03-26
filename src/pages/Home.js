@@ -14,70 +14,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import CustomSwitch from '../components/custom_switch'
 import { Settings as SettingsIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { blue, red } from '@mui/material/colors';
-import dbJSON from '../assets/db.json';
-
-const columns = [
-    {
-      field: 'avatar',
-      headerName: '',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      flex: 0,
-      minWidth: 90,
-      renderCell: (params) => {
-        return <div><img style={{width:"46px",height:"46px"}} alt="" src={params.row.avatar === "" ? '/user_icon.png' : 'params.row.avatar'}/></div>;
-      }
-    },
-    {
-      field: 'fullName',
-      headerName: 'USER',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      flex: 3,
-      renderCell: (params) =>{
-        return <div><b>{params.row.firstName} {params.row.lastName}</b><br/>{params.row.email}</div>
-      }
-    },
-    { 
-      field: 'role',
-      headerName: 'ROLE',
-      flex: 2,
-      renderCell: (params) =>{
-        return (
-          <div style={{position: 'relative'}}>
-            {params.row.vpn !== undefined ? <div className='roundButton homeUserVpn' color='violet'></div> : ''}
-            <b>{params.row.role}</b>
-          </div>
-        );
-      }
-    },
-    { 
-      field: 'status',
-      headerName: 'STATUS',
-      flex: 2,
-      renderCell: (params) =>{
-        return <div><CustomSwitch defaultChecked={params.row.status === '1' ? true : false} /></div>
-      }
-    },
-    {
-      field: 'actions',
-      headerName: 'ACTIONS',
-      sortable: false,
-      headerAlign: 'right',
-      align: 'right',
-      flex: 1,
-      renderCell: (params) =>{
-        return (
-          <div>
-            <Link to={`/user/${params.row.id}`}><SettingsIcon color='disabled' sx={{ "&:hover": { color: blue[500] } }}/></Link>
-            <DeleteIcon color='disabled' sx={{ "&:hover": { color: red[500] } }}/>
-          </div>
-        );
-      }
-    },
-  ];
-  
-const rows = dbJSON;
+import UsersContext from '../UsersContext';
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   border: 0,
@@ -142,15 +79,76 @@ function CustomPagination() {
   );
 }
 
-const Home = (props) => {
+const Home = () => {
     return (
+      <UsersContext.Consumer>
+        {({users, addUser, deleteUser}) => (
         <div>
             <Header title={'Project Access'} icon={'addUser'}/>
             <div style={{ padding: '0px 100px' }}>
                 <StyledDataGrid
                     autoHeight
-                    rows={rows}
-                    columns={columns}
+                    rows={users}
+                    columns={[
+                      {
+                        field: 'avatar',
+                        headerName: '',
+                        description: 'This column has a value getter and is not sortable.',
+                        sortable: false,
+                        flex: 0,
+                        minWidth: 90,
+                        renderCell: (params) => {
+                          return <div><img style={{width:"46px",height:"46px"}} alt="" src={params.row.avatar === "" ? '/user_icon.png' : 'params.row.avatar'}/></div>;
+                        }
+                      },
+                      {
+                        field: 'fullName',
+                        headerName: 'USER',
+                        description: 'This column has a value getter and is not sortable.',
+                        sortable: false,
+                        flex: 3,
+                        renderCell: (params) =>{
+                          return <div><b>{params.row.firstName} {params.row.lastName}</b><br/>{params.row.email}</div>
+                        }
+                      },
+                      { 
+                        field: 'role',
+                        headerName: 'ROLE',
+                        flex: 2,
+                        renderCell: (params) =>{
+                          return (
+                            <div style={{position: 'relative'}}>
+                              {params.row.vpn !== undefined ? <div className='roundButton homeUserVpn' color='violet'></div> : ''}
+                              <b>{params.row.role}</b>
+                            </div>
+                          );
+                        }
+                      },
+                      { 
+                        field: 'status',
+                        headerName: 'STATUS',
+                        flex: 2,
+                        renderCell: (params) =>{
+                          return <div><CustomSwitch defaultChecked={params.row.status === '1' ? true : false} /></div>
+                        }
+                      },
+                      {
+                        field: 'actions',
+                        headerName: 'ACTIONS',
+                        sortable: false,
+                        headerAlign: 'right',
+                        align: 'right',
+                        flex: 1,
+                        renderCell: (params) =>{
+                          return (
+                            <div>
+                              <Link to={`/user/${params.row.id}`}><SettingsIcon color='disabled' sx={{ "&:hover": { color: blue[500] } }}/></Link>
+                              <DeleteIcon onClick={deleteUser} color='disabled' sx={{ "&:hover": { color: red[500] } }}/>
+                            </div>
+                          );
+                        }
+                      },
+                    ]}
                     pageSize={5}
                     rowsPerPageOptions={[5, 10, 20]}
                     disableDensitySelector={true}
@@ -162,6 +160,8 @@ const Home = (props) => {
                 />
             </div>
         </div>
+        )}
+      </UsersContext.Consumer>
     )
 }
 
