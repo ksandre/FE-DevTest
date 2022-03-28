@@ -4,7 +4,9 @@ const UsersContext = createContext({
     users: [],
     addUser: () => { },
     updateUser: () => { },
-    deleteUser: () => { }
+    deleteUser: () => { },
+    filteredUsers: [],
+    searchValue: '',
 });
 
 export default UsersContext;

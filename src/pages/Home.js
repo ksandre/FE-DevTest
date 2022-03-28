@@ -41,14 +41,12 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     display: 'none',
   },
   '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-    borderRight: `1px solid ${
-      theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-    }`,
+    borderRight: `1px solid ${theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
+      }`,
   },
   '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
-    borderBottom: `1px solid ${
-      theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-    }`,
+    borderBottom: `1px solid ${theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
+      }`,
   },
   '& .MuiDataGrid-cell': {
     padding: '10px 0px',
@@ -66,103 +64,103 @@ function CustomPagination() {
   const pageCount = useGridSelector(apiRef, gridPageCountSelector);
 
   return (
-      <Pagination
-        color="primary"
-        variant="outlined"
-        shape="rounded"
-        page={page + 1}
-        count={pageCount}
-        // @ts-expect-error
-        renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
-        onChange={(event, value) => apiRef.current.setPage(value - 1)}
-      />
+    <Pagination
+      color="primary"
+      variant="outlined"
+      shape="rounded"
+      page={page + 1}
+      count={pageCount}
+      // @ts-expect-error
+      renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
+      onChange={(event, value) => apiRef.current.setPage(value - 1)}
+    />
   );
 }
 
 const Home = () => {
-    return (
-      <UsersContext.Consumer>
-        {({users, addUser, deleteUser}) => (
+  return (
+    <UsersContext.Consumer>
+      {({ users, addUser, deleteUser, filteredUsers }) => (
         <div>
-            <Header title={'Project Access'} icon={'addUser'}/>
-            <div style={{ padding: '0px 100px' }}>
-                <StyledDataGrid
-                    autoHeight
-                    rows={users}
-                    columns={[
-                      {
-                        field: 'avatar',
-                        headerName: '',
-                        description: 'This column has a value getter and is not sortable.',
-                        sortable: false,
-                        flex: 0,
-                        minWidth: 90,
-                        renderCell: (params) => {
-                          return <div><img style={{width:"46px",height:"46px"}} alt="" src={params.row.avatar === "" ? '/user_icon.png' : 'params.row.avatar'}/></div>;
-                        }
-                      },
-                      {
-                        field: 'fullName',
-                        headerName: 'USER',
-                        description: 'This column has a value getter and is not sortable.',
-                        sortable: false,
-                        flex: 3,
-                        renderCell: (params) =>{
-                          return <div><b>{params.row.firstName} {params.row.lastName}</b><br/>{params.row.email}</div>
-                        }
-                      },
-                      { 
-                        field: 'role',
-                        headerName: 'ROLE',
-                        flex: 2,
-                        renderCell: (params) =>{
-                          return (
-                            <div style={{position: 'relative'}}>
-                              {params.row.vpn !== undefined ? <div className='roundButton homeUserVpn' color='violet'></div> : ''}
-                              <b>{params.row.role}</b>
-                            </div>
-                          );
-                        }
-                      },
-                      { 
-                        field: 'status',
-                        headerName: 'STATUS',
-                        flex: 2,
-                        renderCell: (params) =>{
-                          return <div><CustomSwitch defaultChecked={params.row.status === '1' ? true : false} /></div>
-                        }
-                      },
-                      {
-                        field: 'actions',
-                        headerName: 'ACTIONS',
-                        sortable: false,
-                        headerAlign: 'right',
-                        align: 'right',
-                        flex: 1,
-                        renderCell: (params) =>{
-                          return (
-                            <div>
-                              <Link to={`/user/${params.row.id}`}><SettingsIcon color='disabled' sx={{ "&:hover": { color: blue[500] } }}/></Link>
-                              <DeleteIcon onClick={deleteUser} color='disabled' sx={{ "&:hover": { color: red[500] } }}/>
-                            </div>
-                          );
-                        }
-                      },
-                    ]}
-                    pageSize={5}
-                    rowsPerPageOptions={[5, 10, 20]}
-                    disableDensitySelector={true}
-                    disableColumnSelector={true}
-                    disableSelectionOnClick={true}
-                    components={{
-                      Pagination: CustomPagination,
-                    }}
-                />
-            </div>
+          <Header title={'Project Access'} icon={'addUser'} />
+          <div style={{ padding: '0px 100px' }}>
+            <StyledDataGrid
+              autoHeight
+              rows={filteredUsers.length === 0 ?  users : filteredUsers}
+              columns={[
+                {
+                  field: 'avatar',
+                  headerName: '',
+                  description: 'This column has a value getter and is not sortable.',
+                  sortable: false,
+                  flex: 0,
+                  minWidth: 90,
+                  renderCell: (params) => {
+                    return <div><img style={{ width: "46px", height: "46px" }} alt="" src={params.row.avatar === "" ? '/user_icon.png' : 'params.row.avatar'} /></div>;
+                  }
+                },
+                {
+                  field: 'fullName',
+                  headerName: 'USER',
+                  description: 'This column has a value getter and is not sortable.',
+                  sortable: false,
+                  flex: 3,
+                  renderCell: (params) => {
+                    return <div><b>{params.row.firstName} {params.row.lastName}</b><br />{params.row.email}</div>
+                  }
+                },
+                {
+                  field: 'role',
+                  headerName: 'ROLE',
+                  flex: 2,
+                  renderCell: (params) => {
+                    return (
+                      <div style={{ position: 'relative' }}>
+                        {params.row.vpn !== undefined ? <div className='roundButton homeUserVpn' color='violet'></div> : ''}
+                        <b>{params.row.role}</b>
+                      </div>
+                    );
+                  }
+                },
+                {
+                  field: 'status',
+                  headerName: 'STATUS',
+                  flex: 2,
+                  renderCell: (params) => {
+                    return <div><CustomSwitch defaultChecked={params.row.status === '1' ? true : false} /></div>
+                  }
+                },
+                {
+                  field: 'actions',
+                  headerName: 'ACTIONS',
+                  sortable: false,
+                  headerAlign: 'right',
+                  align: 'right',
+                  flex: 1,
+                  renderCell: (params) => {
+                    return (
+                      <div>
+                        <Link to={`/user/${params.row.id}`}><SettingsIcon color='disabled' sx={{ "&:hover": { color: blue[500] } }} /></Link>
+                        <DeleteIcon onClick={() => { deleteUser(params.row.id) }} color='disabled' sx={{ "&:hover": { color: red[500] } }} />
+                      </div>
+                    );
+                  }
+                },
+              ]}
+              pageSize={5}
+              rowsPerPageOptions={[5, 10, 20]}
+              disableDensitySelector={true}
+              disableColumnSelector={true}
+              disableSelectionOnClick={true}
+              components={{
+                Pagination: CustomPagination,
+              }}
+            />
+          </div>
         </div>
-        )}
-      </UsersContext.Consumer>
-    )
+      )}
+    </UsersContext.Consumer>
+  )
 }
 
 export default Home;

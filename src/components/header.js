@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
 import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 import { Close as CloseIcon } from '@mui/icons-material';
 import InviteNewUser from './invite_new_user';
+import UsersContext from '../UsersContext';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -37,8 +43,9 @@ const style = {
 };
 
 const Header = (props) => {
+    const UsersContextHook = useContext(UsersContext);
     let location = useLocation();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -49,7 +56,23 @@ const Header = (props) => {
                 <header>
                     <h1>{props.title}</h1>
                     <div className='search'>
-                        <input type="text" onChange={props.keywords}/>
+                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                        <FormControl variant="standard">
+                            <InputLabel htmlFor="searchUser">
+                                {UsersContextHook.searchValue.length !== 0 && UsersContextHook.filteredUsers.length === 0 ? `Can't find user` : 'Type to filter the table'}
+                            </InputLabel>
+                            <Input
+                            error={UsersContextHook.searchValue.length !== 0 && UsersContextHook.filteredUsers.length === 0 ? true : false}
+                            id="searchUser"
+                            onChange={UsersContextHook.searchUser}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                <SearchIcon />
+                                </InputAdornment>
+                            }
+                            />
+                        </FormControl>
+                    </Box>
                     </div>
                 </header>
                 <button className='headerIcon addUser' type="button" onClick={handleOpen}>+</button>
@@ -65,7 +88,6 @@ const Header = (props) => {
                         <CloseIcon />
                     </IconButton>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', clear: 'right'}}>
-                        <h1>Invite New User</h1>
                         <InviteNewUser />
                     </div>
                     </Box>
