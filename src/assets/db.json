@@ -9,52 +9,64 @@
         "role": "Admin",
         "status": "1",
         "vpn": "true",
-        "permissionGroup0": [
+        "permissions": [
             {
                 "name": "Super Admin",
                 "value": "false"
-            }
-        ],
-        "permissionGroup1": [
-            {
-                "name": "Permission 11",
-                "value": "false"
             },
             {
-                "name": "Permission 12",
-                "value": "true"
+                "name": "Permission Group 1",
+                "value": "false",
+                "permissionsList": [
+                    {
+                        "name": "Permission 11",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 12",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 13",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 14",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 15",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 13",
-                "value": "false"
+                "name": "Permission Group 2",
+                "value": "false",
+                "permissionsList": [
+                    {
+                        "name": "Permission 16",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 17",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 14",
-                "value": "true"
-            },
-            {
-                "name": "Permission 15",
-                "value": "true"
-            }
-        ],
-        "permissionGroup2": [
-            {
-                "name": "Permission 16",
-                "value": "true"
-            },
-            {
-                "name": "Permission 17",
-                "value": "true"
-            }
-        ],
-        "permissionGroup3": [
-            {
-                "name": "Permission 18",
-                "value": "true"
-            },
-            {
-                "name": "Permission 19",
-                "value": "false"
+                "name": "Permission Group 3",
+                "value": "false",
+                "permissionsList": [
+                    {
+                        "name": "Permission 18",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 19",
+                        "value": "false"
+                    }
+                ]
             }
         ]
     },
@@ -67,52 +79,58 @@
         "email": "margarette.jones@testtask.com",
         "role": "User",
         "status": "1",
-        "permissionGroup0": [
+        "permissions": [
             {
                 "name": "Super Admin",
                 "value": "false"
-            }
-        ],
-        "permissionGroup1": [
-            {
-                "name": "Permission 11",
-                "value": "false"
             },
             {
-                "name": "Permission 12",
-                "value": "true"
+                "permissionGroup1": [
+                    {
+                        "name": "Permission 11",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 12",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 13",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 14",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 15",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 13",
-                "value": "false"
+                "permissionGroup2": [
+                    {
+                        "name": "Permission 16",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 17",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 14",
-                "value": "true"
-            },
-            {
-                "name": "Permission 15",
-                "value": "true"
-            }
-        ],
-        "permissionGroup2": [
-            {
-                "name": "Permission 16",
-                "value": "true"
-            },
-            {
-                "name": "Permission 17",
-                "value": "true"
-            }
-        ],
-        "permissionGroup3": [
-            {
-                "name": "Permission 18",
-                "value": "true"
-            },
-            {
-                "name": "Permission 19",
-                "value": "false"
+                "permissionGroup3": [
+                    {
+                        "name": "Permission 18",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 19",
+                        "value": "false"
+                    }
+                ]
             }
         ]
     },
@@ -125,52 +143,58 @@
         "email": "bethany.doe@testtask.com",
         "role": "User",
         "status": "1",
-        "permissionGroup0": [
+        "permissions": [
             {
                 "name": "Super Admin",
                 "value": "false"
-            }
-        ],
-        "permissionGroup1": [
-            {
-                "name": "Permission 11",
-                "value": "false"
             },
             {
-                "name": "Permission 12",
-                "value": "true"
+                "permissionGroup1": [
+                    {
+                        "name": "Permission 11",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 12",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 13",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 14",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 15",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 13",
-                "value": "false"
+                "permissionGroup2": [
+                    {
+                        "name": "Permission 16",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 17",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 14",
-                "value": "true"
-            },
-            {
-                "name": "Permission 15",
-                "value": "true"
-            }
-        ],
-        "permissionGroup2": [
-            {
-                "name": "Permission 16",
-                "value": "true"
-            },
-            {
-                "name": "Permission 17",
-                "value": "true"
-            }
-        ],
-        "permissionGroup3": [
-            {
-                "name": "Permission 18",
-                "value": "true"
-            },
-            {
-                "name": "Permission 19",
-                "value": "false"
+                "permissionGroup3": [
+                    {
+                        "name": "Permission 18",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 19",
+                        "value": "false"
+                    }
+                ]
             }
         ]
     },
@@ -183,52 +207,58 @@
         "email": "samuel.jackson@testtask.com",
         "role": "User",
         "status": "1",
-        "permissionGroup0": [
+        "permissions": [
             {
                 "name": "Super Admin",
                 "value": "false"
-            }
-        ],
-        "permissionGroup1": [
-            {
-                "name": "Permission 11",
-                "value": "false"
             },
             {
-                "name": "Permission 12",
-                "value": "true"
+                "permissionGroup1": [
+                    {
+                        "name": "Permission 11",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 12",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 13",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 14",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 15",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 13",
-                "value": "false"
+                "permissionGroup2": [
+                    {
+                        "name": "Permission 16",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 17",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 14",
-                "value": "true"
-            },
-            {
-                "name": "Permission 15",
-                "value": "true"
-            }
-        ],
-        "permissionGroup2": [
-            {
-                "name": "Permission 16",
-                "value": "true"
-            },
-            {
-                "name": "Permission 17",
-                "value": "true"
-            }
-        ],
-        "permissionGroup3": [
-            {
-                "name": "Permission 18",
-                "value": "true"
-            },
-            {
-                "name": "Permission 19",
-                "value": "false"
+                "permissionGroup3": [
+                    {
+                        "name": "Permission 18",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 19",
+                        "value": "false"
+                    }
+                ]
             }
         ]
     },
@@ -241,52 +271,58 @@
         "email": "persival.blinn@testtask.com",
         "role": "User",
         "status": "0",
-        "permissionGroup0": [
+        "permissions": [
             {
                 "name": "Super Admin",
                 "value": "false"
-            }
-        ],
-        "permissionGroup1": [
-            {
-                "name": "Permission 11",
-                "value": "false"
             },
             {
-                "name": "Permission 12",
-                "value": "true"
+                "permissionGroup1": [
+                    {
+                        "name": "Permission 11",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 12",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 13",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 14",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 15",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 13",
-                "value": "false"
+                "permissionGroup2": [
+                    {
+                        "name": "Permission 16",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 17",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 14",
-                "value": "true"
-            },
-            {
-                "name": "Permission 15",
-                "value": "true"
-            }
-        ],
-        "permissionGroup2": [
-            {
-                "name": "Permission 16",
-                "value": "true"
-            },
-            {
-                "name": "Permission 17",
-                "value": "true"
-            }
-        ],
-        "permissionGroup3": [
-            {
-                "name": "Permission 18",
-                "value": "true"
-            },
-            {
-                "name": "Permission 19",
-                "value": "false"
+                "permissionGroup3": [
+                    {
+                        "name": "Permission 18",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 19",
+                        "value": "false"
+                    }
+                ]
             }
         ]
     },
@@ -299,52 +335,58 @@
         "email": "samantha.standford@testtask.com",
         "role": "Admin",
         "status": "1",
-        "permissionGroup0": [
+        "permissions": [
             {
                 "name": "Super Admin",
                 "value": "false"
-            }
-        ],
-        "permissionGroup1": [
-            {
-                "name": "Permission 11",
-                "value": "false"
             },
             {
-                "name": "Permission 12",
-                "value": "true"
+                "permissionGroup1": [
+                    {
+                        "name": "Permission 11",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 12",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 13",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Permission 14",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 15",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 13",
-                "value": "false"
+                "permissionGroup2": [
+                    {
+                        "name": "Permission 16",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 17",
+                        "value": "true"
+                    }
+                ]
             },
             {
-                "name": "Permission 14",
-                "value": "true"
-            },
-            {
-                "name": "Permission 15",
-                "value": "true"
-            }
-        ],
-        "permissionGroup2": [
-            {
-                "name": "Permission 16",
-                "value": "true"
-            },
-            {
-                "name": "Permission 17",
-                "value": "true"
-            }
-        ],
-        "permissionGroup3": [
-            {
-                "name": "Permission 18",
-                "value": "true"
-            },
-            {
-                "name": "Permission 19",
-                "value": "false"
+                "permissionGroup3": [
+                    {
+                        "name": "Permission 18",
+                        "value": "true"
+                    },
+                    {
+                        "name": "Permission 19",
+                        "value": "false"
+                    }
+                ]
             }
         ]
     }

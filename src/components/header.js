@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import { Close as CloseIcon } from '@mui/icons-material';
 import InviteNewUser from './invite_new_user';
+import Fade from '@mui/material/Fade';
 import UsersContext from '../UsersContext';
 
 const StyledModal = styled(ModalUnstyled)`
@@ -82,15 +83,18 @@ const Header = (props) => {
                     open={open}
                     onClose={handleClose}
                     BackdropComponent={Backdrop}
+                    closeAfterTransition={true}
                 >
-                    <Box sx={style}>
-                    <IconButton style={{margin:'20px',float:'right'}} onClick={() => setOpen(false)}>
-                        <CloseIcon />
-                    </IconButton>
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', clear: 'right'}}>
-                        <InviteNewUser />
-                    </div>
-                    </Box>
+                    <Fade in={open}>
+                        <Box sx={style}>
+                        <IconButton style={{margin:'20px',float:'right'}} onClick={() => setOpen(false)}>
+                            <CloseIcon />
+                        </IconButton>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', clear: 'right'}}>
+                            <InviteNewUser closeModal={handleClose}/>
+                        </div>
+                        </Box>
+                    </Fade>
                 </StyledModal>
             </div>
         )

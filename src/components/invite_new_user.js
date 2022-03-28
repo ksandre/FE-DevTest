@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 
-const InviteNewUser = () => {
+const InviteNewUser = (props) => {
   const UsersContextHook = useContext(UsersContext);
   // First Name
   const [firstName, setfirstName] = useState('');
@@ -45,10 +45,11 @@ const InviteNewUser = () => {
       role: role
     };
 
-    alert(JSON.stringify(invitedUser));
+    //alert(JSON.stringify(invitedUser));
 
     UsersContextHook.addUser(invitedUser);
     event.preventDefault();
+    props.closeModal();
   }
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import Header from "../components/header";
 import {
@@ -14,6 +14,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import CustomSwitch from '../components/custom_switch'
 import { Settings as SettingsIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { blue, red } from '@mui/material/colors';
+import Box from '@mui/material/Box';
 import UsersContext from '../UsersContext';
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
@@ -64,20 +65,23 @@ function CustomPagination() {
   const pageCount = useGridSelector(apiRef, gridPageCountSelector);
 
   return (
-    <Pagination
-      color="primary"
-      variant="outlined"
-      shape="rounded"
-      page={page + 1}
-      count={pageCount}
-      // @ts-expect-error
-      renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
-      onChange={(event, value) => apiRef.current.setPage(value - 1)}
-    />
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', my: 1 }}>
+      <Pagination
+        color="primary"
+        variant="outlined"
+        shape="rounded"
+        page={page + 1}
+        count={pageCount}
+        // @ts-expect-error
+        renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
+        onChange={(event, value) => apiRef.current.setPage(value - 1)}
+      />
+    </Box>
   );
 }
 
 const Home = () => {
+  const [pageSize, setPageSize] = useState(5);
   return (
     <UsersContext.Consumer>
       {({ users, addUser, deleteUser, filteredUsers }) => (
@@ -86,7 +90,7 @@ const Home = () => {
           <div style={{ padding: '0px 100px' }}>
             <StyledDataGrid
               autoHeight
-              rows={filteredUsers.length === 0 ?  users : filteredUsers}
+              rows={filteredUsers.length === 0 ? users : filteredUsers}
               columns={[
                 {
                   field: 'avatar',
@@ -96,7 +100,7 @@ const Home = () => {
                   flex: 0,
                   minWidth: 90,
                   renderCell: (params) => {
-                    return <div><img style={{ width: "46px", height: "46px" }} alt="" src={params.row.avatar === "" ? '/user_icon.png' : 'params.row.avatar'} /></div>;
+                    return <div><img style={{ width: "46px", height: "46px" }} alt="" src={params.row.avatar === undefined || params.row.avatar === "" ? '/user_icon.png' : 'params.row.avatar'} /></div>;
                   }
                 },
                 {
@@ -147,14 +151,12 @@ const Home = () => {
                   }
                 },
               ]}
-              pageSize={5}
-              rowsPerPageOptions={[5, 10, 20]}
               disableDensitySelector={true}
               disableColumnSelector={true}
               disableSelectionOnClick={true}
-              components={{
-                Pagination: CustomPagination,
-              }}
+              pageSize={pageSize}
+              onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+              rowsPerPageOptions={[5, 10, 20]}
             />
           </div>
         </div>

@@ -14,7 +14,10 @@ const User = () => {
   const UsersContextHook = useContext(UsersContext);
   const { id } = useParams();
   const currentUser = UsersContextHook.users.find(element => element.id === id);
-  console.log(currentUser);
+  console.log(currentUser.permissions[0].name);
+  console.log(currentUser.permissions[1].permissionsList);
+  console.log(currentUser.permissions[2].permissionsList);
+  console.log(currentUser.permissions[3].permissionsList);
 
   const [userStatus, setDisabled] = useState(currentUser.status === '1' ? true : false);
   const handleDisableUserClick = () => {
@@ -140,7 +143,7 @@ const User = () => {
         </div>
         <div style={{ width: '600px' }}>
           <h1 style={{ paddingBottom: '54px' }}>Permissions</h1>
-          <div className='superAdmin'><PermissionsList items={currentUser.permissionGroup0} /></div>
+          {/* <div className='superAdmin'><PermissionsList permissionsGroup={currentUser.permissions[0]} /></div> */}
           <div className='permission'>
             <div className='permissionCollapse' onClick={handleClick1}>
               <div>{openGroup1 ? <ExpandLess /> : <ExpandMore />}</div>
@@ -151,7 +154,7 @@ const User = () => {
             </div>
           </div>
           <Collapse in={openGroup1} timeout="auto" unmountOnExit>
-            <PermissionsList items={currentUser.permissionGroup1} />
+            <PermissionsList permissionsGroup={currentUser.permissions[1].permissionsList} />
           </Collapse>
           <div className='permission'>
             <div className='permissionCollapse' onClick={handleClick2}>
@@ -163,7 +166,7 @@ const User = () => {
             </div>
           </div>
           <Collapse in={openGroup2} timeout="auto" unmountOnExit>
-            <PermissionsList items={currentUser.permissionGroup2} />
+            <PermissionsList permissionsGroup={currentUser.permissions[1].permissionsList} />
           </Collapse>
           <div className='permission'>
             <div className='permissionCollapse' onClick={handleClick3}>
@@ -175,7 +178,7 @@ const User = () => {
             </div>
           </div>
           <Collapse in={openGroup3} timeout="auto" unmountOnExit>
-            <PermissionsList items={currentUser.permissionGroup3} />
+            <PermissionsList permissionsGroup={currentUser.permissions[1].permissionsList} />
           </Collapse>
         </div>
       </div>

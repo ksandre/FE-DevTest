@@ -3,7 +3,7 @@ import CustomSwitch from './custom_switch';
 
 const PermissionsList = (props) => {
     
-    const items = props.items.map((group) => {
+    const items = props.permissionsGroup.map((group) => {
         return (
           <li key={group.name}>
             <div className='permission' color={group.value === 'true' ? 'blue' : 'red'}>
