@@ -10,50 +10,47 @@ import { Settings as SettingsIcon, Delete as DeleteIcon } from '@mui/icons-mater
 import { blue, red } from '@mui/material/colors';
 import UsersContext from '../UsersContext';
 
-const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
+const StyledDataGrid = styled(DataGrid)({
   border: 0,
-  color:
-    theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.85)',
-  fontFamily: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    '"Segoe UI"',
-    'Roboto',
-    '"Helvetica Neue"',
-    'Arial',
-    'sans-serif',
-    '"Apple Color Emoji"',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"',
-  ].join(','),
-  WebkitFontSmoothing: 'auto',
-  letterSpacing: 'normal',
-  '& .MuiDataGrid-columnsContainer': {
-    backgroundColor: theme.palette.mode === 'light' ? '#fafafa' : '#1d1d1d',
+  '& .MuiDataGrid-columnSeparator *': {
+    display: 'none'
   },
-  '& .MuiDataGrid-iconSeparator': {
-    display: 'none',
+  '& .MuiDataGrid-columnHeader:first-of-type div': {
+    display: 'none'
   },
-  '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-    borderRight: `1px solid ${theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-      }`,
+  '& .MuiDataGrid-columnHeader:nth-of-type(2) .MuiDataGrid-menuIcon, .MuiDataGrid-columnHeader:nth-of-type(5) .MuiDataGrid-menuIcon': {
+    display: 'none'
   },
-  '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
-    borderBottom: `1px solid ${theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-      }`,
+  '& .MuiDataGrid-columnHeaderTitle': {
+    fontWeight: 'bold',
+  },
+  '& .MuiDataGrid-columnHeaders': {
+    border: 0,
+  },
+  '& .MuiDataGrid-row:first-of-type .MuiDataGrid-cell:first-of-type': {
+    border: 0,
+  },
+  '& .MuiDataGrid-row:first-of-type .MuiDataGrid-cell': {
+    borderTop: '2px solid #d8d8d8'
+  },
+  '& .MuiDataGrid-cell:first-of-type': {
+    border: 0,
   },
   '& .MuiDataGrid-cell': {
-    padding: '10px 0px',
-    color:
-      theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.65)',
+    borderBottom: '1px solid #d8d8d8',
+    borderColor: '#d8d8d8 !important'
   },
   '& .MuiPaginationItem-root': {
     borderRadius: 0,
   },
-}));
+  '& .MuiDataGrid-footerContainer': {
+    border: 0,
+  },
+});
 
 const Home = () => {
   const [pageSize, setPageSize] = useState(5);
+
   return (
     <UsersContext.Consumer>
       {({ users, updateUser, deleteUser, filteredUsers }) => (
@@ -103,7 +100,18 @@ const Home = () => {
                   headerName: 'STATUS',
                   flex: 2,
                   renderCell: (params) => {
-                    return <div><CustomSwitch onClick={() => updateUser(params.row.id, { "status": params.row.status === '1' ? '0' : '1' })} checked={params.row.status === '1' ? true : false} /></div>
+                    return (
+                    <div className='activeAfterDisabling'>
+                      <CustomSwitch onClick={
+                      () => {
+                        updateUser(params.row.id, { "status": params.row.status === '1' ? '0' : '1' })
+                        if (params.row.status === '1') { document.querySelector(`[data-id="${params.row.id}"]`).classList.add("disabled"); }
+                        else { document.querySelector(`[data-id="${params.row.id}"]`).classList.remove("disabled"); }
+                      }
+                    }
+                    checked={params.row.status === '1' ? true : false} />
+                    </div>
+                    );
                   }
                 },
                 {
@@ -116,19 +124,21 @@ const Home = () => {
                   renderCell: (params) => {
                     return (
                       <div>
-                        <Link to={`/user/${params.row.id}`}><SettingsIcon color='disabled' sx={{ "&:hover": { color: blue[500] } }} /></Link>
-                        <DeleteIcon onClick={() => { deleteUser(params.row.id) }} color='disabled' sx={{ "&:hover": { color: red[500] } }} />
+                        <Link className="hideAfterDisabling" to={`/user/${params.row.id}`}><SettingsIcon color='disabled' sx={{ "&:hover": { color: blue[500] } }} /></Link>
+                        <DeleteIcon className='activeAfterDisabling' onClick={() => { deleteUser(params.row.id) }} color='disabled' sx={{ "&:hover": { color: red[500] } }} />
                       </div>
                     );
                   }
                 },
               ]}
+              density={'comfortable'}
               disableDensitySelector={true}
               disableColumnSelector={true}
               disableSelectionOnClick={true}
               pageSize={pageSize}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               rowsPerPageOptions={[5, 10, 20]}
+              getRowClassName={(params) => params.row.status === '0' ? 'disabled' : ''}
             />
           </div>
         </div>

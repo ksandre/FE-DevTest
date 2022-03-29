@@ -90,10 +90,12 @@ h1 {
   bottom: 0px;
   z-index: 5;
 }
-.userInfo.disabled .activeAfterDisabling {
+
+.activeAfterDisabling {
   position: relative;
   z-index: 10;
 }
+
 .userInfo.disabled .hideAfterDisabling {
   display: none;
 }
@@ -227,4 +229,24 @@ ul.permissionUl .permission[color="blue"] div::before {
   .disableUser {
     margin-left: 0px;
   }
+}
+
+/*  */
+.MuiDataGrid-row.disabled {
+  position: relative;
+}
+.MuiDataGrid-row.disabled::before {
+  position: absolute;
+  content: "";
+  display: block;
+  opacity: 0.8;
+  background-color: #f3f3f3;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 5;
+}
+.MuiDataGrid-row.disabled .hideAfterDisabling {
+  display: none;
 }
