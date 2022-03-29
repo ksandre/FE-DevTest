@@ -10,7 +10,7 @@ const PermissionsList = (props) => {
   const UsersContextHook = useContext(UsersContext);
 
   const [openGroup1, setOpen1] = useState(true);
-  const [openGroup2, setOpen2] = useState(false);
+  const [openGroup2, setOpen2] = useState(true);
   const [openGroup3, setOpen3] = useState(false);
 
   const handleCollapse = (id) => {
@@ -50,7 +50,7 @@ const PermissionsList = (props) => {
               </div>
             </div>
             <Collapse in={isOpen(group.id)} timeout="auto" unmountOnExit>
-              <ul className='permissionUl'>
+              <ul className={`permissionUl ${group.value === 'true' ? '' : 'disabled'}`}>
                 <br />
                 {
                   group.permissionsList.map((list, listIndex) => {

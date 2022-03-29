@@ -17,7 +17,7 @@
             },
             {
                 "name": "Permission Group 1",
-                "value": "false",
+                "value": "true",
                 "id": "Group1",
                 "permissionsList": [
                     {
@@ -239,7 +239,7 @@
             },
             {
                 "name": "Permission Group 1",
-                "value": "false",
+                "value": "true",
                 "id": "Group1",
                 "permissionsList": [
                     {

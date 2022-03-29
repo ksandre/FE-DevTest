@@ -58,7 +58,7 @@ const User = () => {
     <div>
       <Header title={'User Setup'} icon={'userSetup'} />
       <div id="userInfo" className={`userInfo ${currentUser.status === '1' ? '' : 'disabled'}`}>
-        <div style={{ textAlign: 'center' }}>
+        <aside style={{ textAlign: 'center' }}>
           <div className='activeAfterDisabling'>
             <div style={{ position: 'relative' }}>
               <img alt="" src={currentUser.avatar === undefined || currentUser.avatar === '' ? '../user_icon.png' : currentUser.avatar} />
@@ -80,11 +80,11 @@ const User = () => {
           <br />
           <div style={{ paddingBottom: '60px' }}>{currentUser.email}</div>
           <button className='roundButton hideAfterDisabling' color='violet'>Resend the invite</button>
-        </div>
-        <div style={{ width: '300px'}}>
+        </aside>
+        <aside>
           <div className='activeAfterDisabling'>
             <h1 style={{ paddingBottom: '54px' }}>Details</h1>
-            <div style={{ marginLeft: '-60px' }}>
+            <div className='disableUser'>
               <CustomSwitch onClick={handleDisableUserClick} checked={currentUser.status === '1' ? true : false} />
               <span>The user is {currentUser.status === '1' ? 'Active' : 'Inactive'}</span>
             </div>
@@ -131,14 +131,16 @@ const User = () => {
             </TextField>
             <button style={{marginTop: '112px'}} type="submit" className='roundButton hideAfterDisabling' color='blue' disabled={firstName.length === 0 || lastName.length === 0 ? 'disabled' : ''}>Save Changes</button>
           </form>
-        </div>
+        </aside>
         {currentUser.permissions !== undefined && currentUser.permissions.length > 0 ?
-        <div style={{ width: '600px' }}>
+        <aside>
           <h1 style={{ paddingBottom: '54px' }}>Permissions</h1>
           <PermissionsList userId={id} permissionsObjects={currentUser.permissions} />
-        </div>
+        </aside>
         :
-        <div><Alert style={{border: '1px solid #ffac31'}} severity="warning">Moderator has not set permissions for this user yet.</Alert></div>
+        <aside>
+          <Alert style={{border: '1px solid #ffac31'}} severity="warning">Moderator has not set permissions for this user yet.</Alert>
+        </aside>
         }
       </div>
     </div>

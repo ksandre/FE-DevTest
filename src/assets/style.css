@@ -64,6 +64,20 @@ h1 {
     justify-content: space-between;
 }
 
+.userInfo > aside:nth-child(2)
+{
+  width: 300px;
+}
+.userInfo > aside:nth-child(3){
+  width: 600px;
+}
+
+@media (max-width: 1620px) {
+  .userInfo > aside:nth-child(3) {
+    width: 400px;
+  }
+}
+
 .userInfo.disabled::before {
   position: absolute;
   content: "";
@@ -152,11 +166,25 @@ h1 {
 }
 
 ul.permissionUl {
-    display: block;
-    list-style: none;
-    margin: 0px;
-    padding-left: 40px;
+  position: relative;
+  display: block;
+  list-style: none;
+  margin: 0px;
+  padding-left: 40px;
 }
+ul.permissionUl.disabled::before {
+  position: absolute;
+  content: "";
+  display: block;
+  opacity: 0.8;
+  background-color: #f3f3f3;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 5;
+}
+
 .superAdmin ul.permissionUl {padding: 0;}
 .superAdmin ul.permissionUl .permission { font-weight: bold !important; }
 .superAdmin ul.permissionUl .permission div::before {display: none;}
@@ -190,4 +218,13 @@ ul.permissionUl .permission[color="blue"] div::before {
 }
 .permissionCollapse div:first-child {
   padding-right: 6px;
+}
+
+.disableUser{
+  margin-left: -60px;
+}
+@media (max-width: 1620px) {
+  .disableUser {
+    margin-left: 0px;
+  }
 }
