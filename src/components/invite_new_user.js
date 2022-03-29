@@ -18,6 +18,7 @@ const InviteNewUser = (props) => {
   // Email
   const [email, setEmail] = useState('');
   const emailChange = event => setEmail(event.target.value);
+  const emailRegex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
   // Role
   const roles = [
     {
@@ -95,13 +96,13 @@ const InviteNewUser = (props) => {
         </Box>
         <br />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', my: 1 }}>
-          <button style={{ width: '142px', height: '42px' }} type="submit" className='roundButton hideAfterDisabling' color='blue' disabled={firstName.length === 0 || lastName.length === 0 || email.length === 0 ? 'disabled' : ''}>
+          <button style={{ width: '142px', height: '42px' }} type="submit" className='roundButton hideAfterDisabling' color='blue' disabled={firstName.length === 0 || lastName.length === 0 || email.length === 0 || !emailRegex.test(email) ? true : false}>
             Send Invitation
           </button>
           <span style={
-            firstName.length === 0 || lastName.length === 0 || email.length === 0 ? { fontStyle: 'italic', color: '#F89797' } : { fontStyle: 'italic', color: '#44D36A' }
+            firstName.length === 0 || lastName.length === 0 || email.length === 0 || !emailRegex.test(email) ? { fontStyle: 'italic', color: '#F89797' } : { fontStyle: 'italic', color: '#44D36A' }
           }>
-            {firstName.length === 0 || lastName.length === 0 || email.length === 0 ? 'Fill in all the fields' : 'Good to go'}
+            {firstName.length === 0 || lastName.length === 0 || email.length === 0 || !emailRegex.test(email) ? 'Fill in all the fields' : 'Good to go'}
           </span>
         </Box>
       </form>
