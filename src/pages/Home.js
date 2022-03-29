@@ -1,20 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from "../components/header";
 import {
-  DataGrid,
-  gridPageCountSelector,
-  gridPageSelector,
-  useGridApiContext,
-  useGridSelector,
+  DataGrid
 } from '@mui/x-data-grid';
 import { styled } from '@mui/material/styles';
-import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
 import CustomSwitch from '../components/custom_switch'
 import { Settings as SettingsIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { blue, red } from '@mui/material/colors';
-import Box from '@mui/material/Box';
 import UsersContext from '../UsersContext';
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
@@ -59,32 +52,11 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   },
 }));
 
-function CustomPagination() {
-  const apiRef = useGridApiContext();
-  const page = useGridSelector(apiRef, gridPageSelector);
-  const pageCount = useGridSelector(apiRef, gridPageCountSelector);
-
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', my: 1 }}>
-      <Pagination
-        color="primary"
-        variant="outlined"
-        shape="rounded"
-        page={page + 1}
-        count={pageCount}
-        // @ts-expect-error
-        renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
-        onChange={(event, value) => apiRef.current.setPage(value - 1)}
-      />
-    </Box>
-  );
-}
-
 const Home = () => {
   const [pageSize, setPageSize] = useState(5);
   return (
     <UsersContext.Consumer>
-      {({ users, addUser, deleteUser, filteredUsers }) => (
+      {({ users, updateUser, deleteUser, filteredUsers }) => (
         <div>
           <Header title={'Project Access'} icon={'addUser'} />
           <div style={{ padding: '0px 100px' }}>
@@ -131,7 +103,7 @@ const Home = () => {
                   headerName: 'STATUS',
                   flex: 2,
                   renderCell: (params) => {
-                    return <div><CustomSwitch defaultChecked={params.row.status === '1' ? true : false} /></div>
+                    return <div><CustomSwitch onClick={() => updateUser(params.row.id, { "status": params.row.status === '1' ? '0' : '1' })} checked={params.row.status === '1' ? true : false} /></div>
                   }
                 },
                 {

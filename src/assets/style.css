@@ -154,13 +154,10 @@ h1 {
 ul.permissionUl {
     display: block;
     list-style: none;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    margin: 0px;
+    padding-left: 40px;
 }
-.superAdmin ul.permissionUl {padding-inline-start: 0;}
+.superAdmin ul.permissionUl {padding: 0;}
 .superAdmin ul.permissionUl .permission { font-weight: bold !important; }
 .superAdmin ul.permissionUl .permission div::before {display: none;}
 

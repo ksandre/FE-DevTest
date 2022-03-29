@@ -38,11 +38,14 @@ const InviteNewUser = (props) => {
   const handleSubmit = (event) => {
     let randomId = Math.floor(Math.random() * 100000);
     let invitedUser = {
-      id: randomId,
+      id: `${randomId}`,
       firstName: firstName,
       lastName: lastName,
+      fullName: `${firstName} ${lastName}`,
       email: email,
-      role: role
+      role: role,
+      "status": "0",
+      "vpn": "false"
     };
 
     //alert(JSON.stringify(invitedUser));

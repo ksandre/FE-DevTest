@@ -1,37 +1,24 @@
 import React, { useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Header from "../components/header";
-import Collapse from '@mui/material/Collapse';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import Alert from '@mui/material/Alert';
 import PermissionsList from '../components/permissions_list';
 import CustomSwitch from '../components/custom_switch';
 import UsersContext from '../UsersContext';
 
 const User = () => {
+  let history = useNavigate();
   const UsersContextHook = useContext(UsersContext);
   const { id } = useParams();
   const currentUser = UsersContextHook.users.find(element => element.id === id);
-  console.log(currentUser.permissions[0].name);
-  console.log(currentUser.permissions[1].permissionsList);
-  console.log(currentUser.permissions[2].permissionsList);
-  console.log(currentUser.permissions[3].permissionsList);
 
-  const [userStatus, setDisabled] = useState(currentUser.status === '1' ? true : false);
   const handleDisableUserClick = () => {
-    setDisabled(!userStatus);
-    if (userStatus) { document.getElementById('userInfo').classList.add("disabled"); }
+    UsersContextHook.updateUser(id,{"status": currentUser.status === '1' ? '0' : '1'});
+    if (currentUser.status === '1') { document.getElementById('userInfo').classList.add("disabled"); }
     else { document.getElementById('userInfo').classList.remove("disabled"); }
   };
-
-  const [openGroup1, setOpen1] = useState(true);
-  const [openGroup2, setOpen2] = useState(false);
-  const [openGroup3, setOpen3] = useState(false);
-  const handleClick1 = () => { setOpen1(!openGroup1); };
-  const handleClick2 = () => { setOpen2(!openGroup2); };
-  const handleClick3 = () => { setOpen3(!openGroup3); };
 
   // First Name
   const [firstName, setfirstName] = useState(currentUser.firstName);
@@ -58,7 +45,13 @@ const User = () => {
   };
 
   const handleSubmit = (event) => {
+    UsersContextHook.updateUser(id, {
+      firstName: firstName,
+      lastName: lastName,
+      role: role
+    });
     event.preventDefault();
+    history("/");
   }
 
   return (
@@ -68,7 +61,7 @@ const User = () => {
         <div style={{ textAlign: 'center' }}>
           <div className='activeAfterDisabling'>
             <div style={{ position: 'relative' }}>
-              <img alt="" src={currentUser.avatar === '' ? '../user_icon.png' : currentUser.avatar} />
+              <img alt="" src={currentUser.avatar === undefined || currentUser.avatar === '' ? '../user_icon.png' : currentUser.avatar} />
               {currentUser.vpn !== undefined ? <div className='roundButton userAvatarVpn' color='violet'></div> : ''}
             </div>
           </div>
@@ -88,15 +81,15 @@ const User = () => {
           <div style={{ paddingBottom: '60px' }}>{currentUser.email}</div>
           <button className='roundButton hideAfterDisabling' color='violet'>Resend the invite</button>
         </div>
-        <div style={{ width: '300px', position:'relative' }}>
+        <div style={{ width: '300px'}}>
           <div className='activeAfterDisabling'>
             <h1 style={{ paddingBottom: '54px' }}>Details</h1>
-            <div style={{marginLeft: '-60px'}}>
-            <CustomSwitch onClick={handleDisableUserClick} defaultChecked={currentUser.status === '1' ? true : false} />
-            <span>The user is {userStatus === true ? 'Active' : 'Inactive'}</span>
+            <div style={{ marginLeft: '-60px' }}>
+              <CustomSwitch onClick={handleDisableUserClick} checked={currentUser.status === '1' ? true : false} />
+              <span>The user is {currentUser.status === '1' ? 'Active' : 'Inactive'}</span>
             </div>
           </div>
-          <br/><br/>
+          <br /><br />
           <form action="" onSubmit={handleSubmit}>
             <TextField
               error={firstName.length === 0 ? true : false}
@@ -108,7 +101,7 @@ const User = () => {
               onChange={firstNameChange}
               variant="standard"
             />
-            <br/><br/>
+            <br /><br />
             <TextField
               error={lastName.length === 0 ? true : false}
               fullWidth
@@ -119,7 +112,7 @@ const User = () => {
               onChange={lastNameChange}
               variant="standard"
             />
-            <br/><br/>
+            <br /><br />
             <TextField
               fullWidth
               id="user-role"
@@ -136,51 +129,17 @@ const User = () => {
                 </MenuItem>
               ))}
             </TextField>
-            <div style={{position: 'absolute', left: '0px', bottom: '0px'}}>
-              <button type="submit" className='roundButton hideAfterDisabling' color='blue' disabled={firstName.length === 0 || lastName.length === 0 ? 'disabled' : ''}>Save Changes</button>
-            </div>
+            <button style={{marginTop: '112px'}} type="submit" className='roundButton hideAfterDisabling' color='blue' disabled={firstName.length === 0 || lastName.length === 0 ? 'disabled' : ''}>Save Changes</button>
           </form>
         </div>
+        {currentUser.permissions !== undefined && currentUser.permissions.length > 0 ?
         <div style={{ width: '600px' }}>
           <h1 style={{ paddingBottom: '54px' }}>Permissions</h1>
-          {/* <div className='superAdmin'><PermissionsList permissionsGroup={currentUser.permissions[0]} /></div> */}
-          <div className='permission'>
-            <div className='permissionCollapse' onClick={handleClick1}>
-              <div>{openGroup1 ? <ExpandLess /> : <ExpandMore />}</div>
-              <div>Permission Group 1</div>
-            </div>
-            <div>
-              <CustomSwitch />
-            </div>
-          </div>
-          <Collapse in={openGroup1} timeout="auto" unmountOnExit>
-            <PermissionsList permissionsGroup={currentUser.permissions[1].permissionsList} />
-          </Collapse>
-          <div className='permission'>
-            <div className='permissionCollapse' onClick={handleClick2}>
-              <div>{openGroup2 ? <ExpandLess /> : <ExpandMore />}</div>
-              <div>Permission Group 2</div>
-            </div>
-            <div>
-              <CustomSwitch />
-            </div>
-          </div>
-          <Collapse in={openGroup2} timeout="auto" unmountOnExit>
-            <PermissionsList permissionsGroup={currentUser.permissions[1].permissionsList} />
-          </Collapse>
-          <div className='permission'>
-            <div className='permissionCollapse' onClick={handleClick3}>
-              <div>{openGroup3 ? <ExpandLess /> : <ExpandMore />}</div>
-              <div>Permission Group 3</div>
-            </div>
-            <div>
-              <CustomSwitch />
-            </div>
-          </div>
-          <Collapse in={openGroup3} timeout="auto" unmountOnExit>
-            <PermissionsList permissionsGroup={currentUser.permissions[1].permissionsList} />
-          </Collapse>
+          <PermissionsList userId={id} permissionsObjects={currentUser.permissions} />
         </div>
+        :
+        <div><Alert style={{border: '1px solid #ffac31'}} severity="warning">Moderator has not set permissions for this user yet.</Alert></div>
+        }
       </div>
     </div>
   )

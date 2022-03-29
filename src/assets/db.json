@@ -12,11 +12,13 @@
         "permissions": [
             {
                 "name": "Super Admin",
-                "value": "false"
+                "value": "true",
+                "id" : "superAdmin"
             },
             {
                 "name": "Permission Group 1",
                 "value": "false",
+                "id": "Group1",
                 "permissionsList": [
                     {
                         "name": "Permission 11",
@@ -43,6 +45,7 @@
             {
                 "name": "Permission Group 2",
                 "value": "false",
+                "id": "Group2",
                 "permissionsList": [
                     {
                         "name": "Permission 16",
@@ -57,6 +60,7 @@
             {
                 "name": "Permission Group 3",
                 "value": "false",
+                "id": "Group3",
                 "permissionsList": [
                     {
                         "name": "Permission 18",
@@ -82,10 +86,14 @@
         "permissions": [
             {
                 "name": "Super Admin",
-                "value": "false"
+                "value": "true",
+                "id" : "superAdmin"
             },
             {
-                "permissionGroup1": [
+                "name": "Permission Group 1",
+                "value": "false",
+                "id": "Group1",
+                "permissionsList": [
                     {
                         "name": "Permission 11",
                         "value": "false"
@@ -109,7 +117,10 @@
                 ]
             },
             {
-                "permissionGroup2": [
+                "name": "Permission Group 2",
+                "value": "false",
+                "id": "Group2",
+                "permissionsList": [
                     {
                         "name": "Permission 16",
                         "value": "true"
@@ -121,7 +132,10 @@
                 ]
             },
             {
-                "permissionGroup3": [
+                "name": "Permission Group 3",
+                "value": "false",
+                "id": "Group3",
+                "permissionsList": [
                     {
                         "name": "Permission 18",
                         "value": "true"
@@ -146,10 +160,14 @@
         "permissions": [
             {
                 "name": "Super Admin",
-                "value": "false"
+                "value": "true",
+                "id" : "superAdmin"
             },
             {
-                "permissionGroup1": [
+                "name": "Permission Group 1",
+                "value": "false",
+                "id": "Group1",
+                "permissionsList": [
                     {
                         "name": "Permission 11",
                         "value": "false"
@@ -173,7 +191,10 @@
                 ]
             },
             {
-                "permissionGroup2": [
+                "name": "Permission Group 2",
+                "value": "false",
+                "id": "Group2",
+                "permissionsList": [
                     {
                         "name": "Permission 16",
                         "value": "true"
@@ -185,7 +206,10 @@
                 ]
             },
             {
-                "permissionGroup3": [
+                "name": "Permission Group 3",
+                "value": "false",
+                "id": "Group3",
+                "permissionsList": [
                     {
                         "name": "Permission 18",
                         "value": "true"
@@ -210,10 +234,14 @@
         "permissions": [
             {
                 "name": "Super Admin",
-                "value": "false"
+                "value": "true",
+                "id" : "superAdmin"
             },
             {
-                "permissionGroup1": [
+                "name": "Permission Group 1",
+                "value": "false",
+                "id": "Group1",
+                "permissionsList": [
                     {
                         "name": "Permission 11",
                         "value": "false"
@@ -237,7 +265,10 @@
                 ]
             },
             {
-                "permissionGroup2": [
+                "name": "Permission Group 2",
+                "value": "false",
+                "id": "Group2",
+                "permissionsList": [
                     {
                         "name": "Permission 16",
                         "value": "true"
@@ -249,7 +280,10 @@
                 ]
             },
             {
-                "permissionGroup3": [
+                "name": "Permission Group 3",
+                "value": "false",
+                "id": "Group3",
+                "permissionsList": [
                     {
                         "name": "Permission 18",
                         "value": "true"
@@ -274,10 +308,14 @@
         "permissions": [
             {
                 "name": "Super Admin",
-                "value": "false"
+                "value": "true",
+                "id" : "superAdmin"
             },
             {
-                "permissionGroup1": [
+                "name": "Permission Group 1",
+                "value": "false",
+                "id": "Group1",
+                "permissionsList": [
                     {
                         "name": "Permission 11",
                         "value": "false"
@@ -301,7 +339,10 @@
                 ]
             },
             {
-                "permissionGroup2": [
+                "name": "Permission Group 2",
+                "value": "false",
+                "id": "Group2",
+                "permissionsList": [
                     {
                         "name": "Permission 16",
                         "value": "true"
@@ -313,7 +354,10 @@
                 ]
             },
             {
-                "permissionGroup3": [
+                "name": "Permission Group 3",
+                "value": "false",
+                "id": "Group3",
+                "permissionsList": [
                     {
                         "name": "Permission 18",
                         "value": "true"
@@ -338,10 +382,14 @@
         "permissions": [
             {
                 "name": "Super Admin",
-                "value": "false"
+                "value": "true",
+                "id" : "superAdmin"
             },
             {
-                "permissionGroup1": [
+                "name": "Permission Group 1",
+                "value": "false",
+                "id": "Group1",
+                "permissionsList": [
                     {
                         "name": "Permission 11",
                         "value": "false"
@@ -365,7 +413,10 @@
                 ]
             },
             {
-                "permissionGroup2": [
+                "name": "Permission Group 2",
+                "value": "false",
+                "id": "Group2",
+                "permissionsList": [
                     {
                         "name": "Permission 16",
                         "value": "true"
@@ -377,7 +428,10 @@
                 ]
             },
             {
-                "permissionGroup3": [
+                "name": "Permission Group 3",
+                "value": "false",
+                "id": "Group3",
+                "permissionsList": [
                     {
                         "name": "Permission 18",
                         "value": "true"

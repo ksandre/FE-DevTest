@@ -14,16 +14,30 @@ class App extends Component {
 
     this.addUser = (newUser, e) => {
       console.log('Add User Click', newUser);
-      const users = Object.assign([], this.state.users);
-      users.unshift(newUser);
-      this.setState({ users: users });
-      console.log('Users', this.state.users);
+      //const users = Object.assign([], this.state.users);
+      //users.unshift(newUser);
+      this.setState({
+        users: [
+          newUser,
+          ...this.state.users
+        ]
+      }, () => { console.log(this.state.users); });
     }
 
-    this.updateUser = (index, e) => {
-      const users = Object.assign([], this.state.users);
-      users.splice(index, 1);
-      this.setState({ users: users })
+    this.updateUser = (id, userAttributes) => {
+      let index = this.state.users.findIndex(x => x.id === id);
+      if (index === -1) {
+        console.log(`Can't find user with id ${id}`);
+      }
+      else {
+        this.setState({
+          users: [
+            ...this.state.users.slice(0, index),
+            Object.assign({}, this.state.users[index], userAttributes),
+            ...this.state.users.slice(index + 1)
+          ]
+        }, () => { console.log(this.state.users); });
+      }
     }
 
     this.deleteUser = (uid) => {
@@ -34,7 +48,7 @@ class App extends Component {
       this.setState({ users: users });
 
       let searchUserInput = document.getElementById('searchUser');
-      if(searchUserInput.value.length !== 0){
+      if (searchUserInput.value.length !== 0) {
         const filteredUsers = Object.assign([], this.state.filteredUsers);
         const index = filteredUsers.findIndex(user => user.id === uid);
         filteredUsers.splice(index, 1);
